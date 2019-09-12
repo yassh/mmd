@@ -1,0 +1,23 @@
+graph LR
+
+srcChanges{ビルド対象のソースコードが変化してる}
+behaviorChanges{画面の見た目や挙動が変わる}
+astChanges{抽象構文木が変化する}
+hasNewFeature{ユーザーに新しい機能を提供する}
+whatChanges[変化しているのは]
+
+srcChanges---|Yes|behaviorChanges
+srcChanges---|No|whatChanges
+
+behaviorChanges---|Yes|hasNewFeature
+behaviorChanges---|No|astChanges
+
+hasNewFeature---|Yes|feat
+hasNewFeature---|No|fix
+
+astChanges---|Yes|refactor
+astChanges---|No|S[style]
+
+whatChanges---|テストファイル|test
+whatChanges---|ドキュメント|docs
+whatChanges---|その他|chore
